@@ -7,66 +7,66 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/newsfeed"
         android:layout_width="118dp"
         android:layout_height="117dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:text="NewsFeed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintStart_toEndOf="@+id/profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.068" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/profile"
         android:layout_width="118dp"
         android:layout_height="117dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:text="Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.137" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/nextplan"
         android:layout_width="118dp"
         android:layout_height="117dp"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:text="Next Plan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.851" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/friends"
         android:layout_width="118dp"
         android:layout_height="117dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:text="Friends"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toEndOf="@+id/nextplan"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.851" />
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="211dp"
-        android:layout_height="168dp"
+        android:layout_width="233dp"
+        android:layout_height="171dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
