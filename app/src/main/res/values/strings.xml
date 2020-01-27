@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">ThinkAndDO</string>
+    <string name="app_name">LoginAuth</string>
+    <string name="str_terms_and_privacy">By Clicking &quot;Continue&quot;, you have read and accepted our <a href="https://moodle.tru.ca/">Terms of Service</a> and <a href="privacy:">Privacy Policy.</a></string>
+    <string name="facebook_app_id">[APP_ID]</string>
+    <string name="fb_login_protocol_scheme">fb[APP_ID]</string>
+
+
 </resources>
