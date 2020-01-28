@@ -5,6 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="MainActivity">
+    <com.hitomi.cmlibrary.CircleMenu
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/circleMenu"
+
+    />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
