@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="MainActivity">
+    tools:context="HomeActivity">
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -56,8 +56,25 @@
             android:layout_margin="0dp"
             android:background="@drawable/homepagee"
             android:padding="0dp"
-
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <Button
+                android:id="@+id/btnLogin2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/custom_button"
+                android:padding="15dp"
+                android:text="Logout"
+                android:onClick="logout"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
+        </FrameLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -83,6 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#fff">
+
     </com.google.android.material.bottomnavigation.BottomNavigationView>
     <com.hitomi.cmlibrary.CircleMenu
         android:layout_width="match_parent"

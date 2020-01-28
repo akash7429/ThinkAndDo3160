@@ -175,20 +175,22 @@
 
 
         <com.google.android.gms.common.SignInButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/GoogleSignin"/>
+            android:id="@+id/GoogleSignin"
+            android:layout_width="215dp"
+
+            android:layout_height="45dp"
+            android:layout_marginStart="7dp" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="12dp"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:drawablePadding="12dp"
             android:paddingTop="11dp"
-            android:paddingBottom="11dp"
             android:paddingRight="-2dp"
+            android:paddingBottom="9dp"
             android:textSize="15dp" />
     </LinearLayout>
 

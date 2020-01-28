@@ -22,8 +22,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etFullname, etEmail, etPassword;
     Button btnRegister;
     FirebaseAuth fAuth;
+
     ProgressBar progressBar;
     FirebaseFirestore fStore;
     String userID;
@@ -83,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         GsignIn = findViewById(R.id.GoogleSignin);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("692846027185-fkpght7kmd0tkv41a4phmv2211gqns5p.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
@@ -90,13 +94,19 @@ public class MainActivity extends AppCompatActivity {
 
         final GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
 
-        if(signInAccount!=null){
+        // Check if the user had already logged in or not.
+        if(signInAccount!=null || fAuth.getCurrentUser()!=null){
+
+            startActivity(new Intent(this,HomeActivity.class));
             Toast.makeText(this,"User is logged in Already",Toast.LENGTH_SHORT).show();
         }
 
+        // Takes User to another activity for login with google id.
         GsignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Show user the existing google accounts.
                 Intent sign = signInClient.getSignInIntent();
                 startActivityForResult(sign, GOOGLE_SIGN_IN_CODE);
             }
@@ -114,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 final String email = etEmail.getText().toString().trim();
                 final String password = etPassword.getText().toString().trim();
                 final String fullname = etFullname.getText().toString();
+
 
                 if(TextUtils.isEmpty(email)){
 
@@ -142,11 +153,14 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
 
                             Toast.makeText(MainActivity.this,"User Created.", Toast.LENGTH_SHORT).show();
+                            
+                            // Get the information of the current user.
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String, Object> user = new HashMap<>();
                             user.put("fName",fullname);
                             user.put("email",email);
+                            user.put("password",password);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -235,14 +249,29 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 GoogleSignInAccount signInAcc = signInTask.getResult(ApiException.class);
-                Toast.makeText(MainActivity.this,"Your Google Account is Connected", Toast.LENGTH_SHORT).show();
+
+
+                AuthCredential authCredential = GoogleAuthProvider.getCredential(signInAcc.getIdToken(), null);
+
+                fAuth.signInWithCredential(authCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(MainActivity.this,"Your Google Account is Connected", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
 
             } catch (ApiException e) {
                 e.printStackTrace();
             }
         }
     }
-
 
 
 }
