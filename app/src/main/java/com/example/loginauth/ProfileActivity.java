@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.loginauth.Adapter.ProfileViewPagerAdapter;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import butterknife.BindView;
@@ -33,6 +34,12 @@ public class ProfileActivity extends AppCompatActivity {
     @BindView(R.id.ViewPager_profile)
     ViewPager ViewPagerProfile;
 
+    ProfileViewPagerAdapter profileViewPagerAdapter;
+
+    String uid = "0";
+    int current_state = 0;
+    String profileUrl = "", coverUrl = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +51,8 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
 
+        profileViewPagerAdapter = new ProfileViewPagerAdapter(getSupportFragmentManager(), 1);
+
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.arrow_back_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -52,5 +61,10 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
             }
         });
+
+        uid = getIntent().getStringExtra("aid");
+
+
+        ViewPagerProfile.setAdapter(profileViewPagerAdapter);
     }
 }
