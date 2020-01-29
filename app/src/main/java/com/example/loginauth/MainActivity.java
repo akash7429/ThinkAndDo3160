@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -92,13 +93,15 @@ public class MainActivity extends AppCompatActivity {
 
         signInClient = GoogleSignIn.getClient(this,gso);
 
+        FirebaseUser currentFirebaseUser = fAuth.getCurrentUser() ;
         final GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
 
-        // Check if the user had already logged in or not.
-        if(signInAccount!=null || fAuth.getCurrentUser()!=null){
+        // Check if the user had already logged in or not and email is verified or not.
+        if(signInAccount!=null || fAuth.getCurrentUser()!=null && currentFirebaseUser!=null && currentFirebaseUser.isEmailVerified()){
 
             startActivity(new Intent(this,HomeActivity.class));
-            Toast.makeText(this,"User is logged in Already",Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this, "User is logged in Already " + currentFirebaseUser.getEmail(), Toast.LENGTH_LONG).show();
         }
 
         // Takes User to another activity for login with google id.
@@ -113,10 +116,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-            finish();
-        }
+
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +152,24 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
 
-                            Toast.makeText(MainActivity.this,"User Created.", Toast.LENGTH_SHORT).show();
+
+                            // send verification email
+
+                            FirebaseUser fuser = fAuth.getCurrentUser();
+                            fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(MainActivity.this,"Verification email has been send", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    Log.d(TAG,"On Failure: Email not sent"+e.getMessage());
+                                }
+                            });
+
+                            //Toast.makeText(MainActivity.this,"User Created.", Toast.LENGTH_SHORT).show();
                             
                             // Get the information of the current user.
                             userID = fAuth.getCurrentUser().getUid();
@@ -172,7 +189,9 @@ public class MainActivity extends AppCompatActivity {
                                     Log.d(TAG, "onFailure: "+ e.toString());
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+
+                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
                         }
                         else{
                             Toast.makeText(MainActivity.this,"Error !"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
