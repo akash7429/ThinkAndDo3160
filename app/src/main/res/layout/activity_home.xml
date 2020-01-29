@@ -75,6 +75,13 @@
 
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+        <com.hitomi.cmlibrary.CircleMenu
+            android:id="@+id/circleMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:visibility="invisible" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -84,12 +91,7 @@
         android:layout_alignParentBottom="true"
         android:background="#fff">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-    <com.hitomi.cmlibrary.CircleMenu
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/circleMenu"
 
-        />
     <Button
         android:id="@+id/btnLogin2"
         android:layout_width="match_parent"
@@ -103,6 +105,7 @@
 
         android:textColor="#fff"
         android:textSize="18sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
