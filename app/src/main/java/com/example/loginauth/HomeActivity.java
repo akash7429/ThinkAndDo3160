@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.facebook.login.Login;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -86,6 +87,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Toast.makeText(HomeActivity.this,"Clciked",Toast.LENGTH_SHORT).show();
         FirebaseAuth.getInstance().signOut();
+        LoginManager.getInstance().logOut();
 
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
