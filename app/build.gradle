@@ -41,4 +41,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     implementation 'com.github.Hitomis:CircleMenu:v1.1.0'
+
+    // circular imageview
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }
