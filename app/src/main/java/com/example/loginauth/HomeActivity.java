@@ -22,6 +22,11 @@ import com.example.loginauth.Fragments.NewsFeedFragment;
 import com.example.loginauth.Fragments.NotificationFragment;
 import com.example.loginauth.Fragments.ProfileFragment;
 import com.example.loginauth.util.BottomNavigationViewHelper;
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -133,11 +138,26 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    public void logout(View view) {
+    public void logout(final View view) {
 
+        Toast.makeText(HomeActivity.this,"Clciked",Toast.LENGTH_SHORT).show();
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        LoginManager.getInstance().logOut();
+
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
         //not finished();
+
+        GoogleSignIn.getClient(this,new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()).signOut().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                startActivity(new Intent(view.getContext(), MainActivity.class));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(HomeActivity.this,"Google Signout Failed",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
