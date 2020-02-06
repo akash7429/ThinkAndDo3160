@@ -44,4 +44,5 @@ dependencies {
 
     // circular imageview
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.karumi:dexter:6.0.2'
 }
