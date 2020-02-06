@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="MainActivity">
+    tools:context="HomeActivity">
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -56,8 +56,10 @@
             android:layout_margin="0dp"
 
             android:padding="0dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </FrameLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -82,6 +84,7 @@
 
             android:visibility="invisible" />
 
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -90,12 +93,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#fff">
+
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
     <Button
         android:id="@+id/btnLogin2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_marginLeft="20dp"
         android:layout_marginTop="150dp"
         android:layout_marginRight="20dp"
@@ -111,3 +117,4 @@
         app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
 
 </RelativeLayout>
+
