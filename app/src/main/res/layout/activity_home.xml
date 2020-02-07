@@ -84,6 +84,25 @@
 
             android:visibility="invisible" />
 
+        <Button
+            android:id="@+id/btnLogin2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/custom_button"
+            android:onClick="logout"
+            android:padding="15dp"
+            android:text="Logout"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -96,25 +115,6 @@
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-
-    <Button
-        android:id="@+id/btnLogin2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/custom_button"
-        android:padding="15dp"
-        android:text="Logout"
-
-        android:textColor="#fff"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
 
 </RelativeLayout>
 

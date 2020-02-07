@@ -36,6 +36,9 @@ import com.hitomi.cmlibrary.OnMenuSelectedListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
+
+// Checking the github working .. :)--(:
 public class HomeActivity extends AppCompatActivity {
 
     String names[] = {"Profile", "Inspirational Feed", "Friends", "Next Plan"};
