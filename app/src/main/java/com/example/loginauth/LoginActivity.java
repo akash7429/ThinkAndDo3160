@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
         tvCreateAccount = findViewById(R.id.tvCreateAccount);
         etEmailL = findViewById(R.id.etEmailL);
@@ -101,6 +102,8 @@ public class LoginActivity extends AppCompatActivity {
                             if(firebaseUser!=null && firebaseUser.isEmailVerified()) {
                                 Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                                finish();
+                                progressBar2.setVisibility(View.GONE);
                             }
                             else
                             {
@@ -116,7 +119,9 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+
             }
+
         });
 
         // Forgot password link.
@@ -124,30 +129,37 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 final EditText resetmail = new EditText(v.getContext());
                 final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
                 passwordResetDialog.setTitle("Reset Password?");
                 passwordResetDialog.setMessage("Enter Your email to reset password");
                 passwordResetDialog.setView(resetmail);
 
+
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // extract email and send reset link
                         String mail = resetmail.getText().toString();
-                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(LoginActivity.this,"Reset Link Sent to your email.",Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(LoginActivity.this,"Error! Link is Not Sent"+e.getMessage(),Toast.LENGTH_SHORT).show();
-                            }
-                        });
+
+                        if(mail!=null) {
+                            fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(LoginActivity.this, "Reset Link Sent to your email.", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(LoginActivity.this, "Error! Link is Not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
                     }
                 });
+
+
 
                 passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
@@ -158,7 +170,13 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
                 passwordResetDialog.create().show();
-            }
-        });
+
+        }}
+        );
+
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         if(signInAccount!=null || fAuth.getCurrentUser()!=null && currentFirebaseUser!=null && currentFirebaseUser.isEmailVerified()){
 
             startActivity(new Intent(this,HomeActivity.class));
+            finish();
 
             Toast.makeText(this, "User is logged in Already " + currentFirebaseUser.getEmail(), Toast.LENGTH_LONG).show();
         }
@@ -225,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
+
                         }
                         else{
                             Toast.makeText(MainActivity.this,"Error !"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -239,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-                finish();
+
             }
         });
 
@@ -288,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(MainActivity.this,"Your Google Account is Connected", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -308,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = fAuth.getCurrentUser();
-        if (currentUser != null) {
+        if (fbloginButton.isSelected() && currentUser != null) {
 
             updateUI();
         }
@@ -318,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(MainActivity.this, "Facebook Logged in success", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+        finish();
     }
 
 
