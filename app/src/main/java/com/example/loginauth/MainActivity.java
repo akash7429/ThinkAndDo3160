@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int GOOGLE_SIGN_IN_CODE=10005;
     LoginButton fbloginButton;
     CallbackManager callbackManager;
-    TextView tvlogin;
+    TextView tvlogin,tvSkip;
     EditText etFullname, etEmail, etPassword;
     Button btnRegister;
     FirebaseAuth fAuth;
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         fStore = FirebaseFirestore.getInstance();
         GsignIn = findViewById(R.id.GoogleSignin);
+        tvSkip = findViewById(R.id.tvSkip);
 
 
         // Facebook Login
@@ -241,6 +242,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+
+            }
+        });
+
+        tvSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),HomeActivity.class));
 
             }
         });
