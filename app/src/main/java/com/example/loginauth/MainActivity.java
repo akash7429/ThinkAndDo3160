@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     LoginButton fbloginButton;
     CallbackManager callbackManager;
     TextView tvlogin;
+    Button new1;
     EditText etFullname, etEmail, etPassword;
     Button btnRegister;
     FirebaseAuth fAuth;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         fbloginButton = findViewById(R.id.fb_login_button);
         tvlogin = findViewById(R.id.tvLogin);
+        new1 = findViewById(R.id.any);
         callbackManager = CallbackManager.Factory.create();
         etEmail = findViewById(R.id.etEmail);
         etFullname = findViewById(R.id.etFullName);
@@ -127,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
         signInClient = GoogleSignIn.getClient(this,gso);
 
         FirebaseUser currentFirebaseUser = fAuth.getCurrentUser() ;
+
+
         final GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
 
         // Check if the user had already logged in or not and email is verified or not.
@@ -242,6 +246,14 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        new1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),NewLogIn.class));
+                finish();
+            }
+        });
+
 
     }
 

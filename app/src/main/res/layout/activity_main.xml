@@ -141,6 +141,14 @@
                 android:textSize="16sp"
                 android:clickable="true"
                 android:text=" Log in"/>
+
+            <Button
+
+                android:id="@+id/any"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="New" />
         </LinearLayout>
 
         <ProgressBar
@@ -192,6 +200,9 @@
             android:paddingRight="-2dp"
             android:paddingBottom="11dp"
             android:textSize="15dp" />
+
+
     </LinearLayout>
+
 
 </LinearLayout>

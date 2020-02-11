@@ -101,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                             if(firebaseUser!=null && firebaseUser.isEmailVerified()) {
                                 Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+
                             }
                             else
                             {
@@ -161,4 +162,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }

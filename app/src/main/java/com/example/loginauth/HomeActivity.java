@@ -140,7 +140,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void logout(final View view) {
 
-        Toast.makeText(HomeActivity.this,"Clciked",Toast.LENGTH_SHORT).show();
+        Toast.makeText(HomeActivity.this,"Clicked",Toast.LENGTH_SHORT).show();
         FirebaseAuth.getInstance().signOut();
         LoginManager.getInstance().logOut();
 

@@ -10,7 +10,7 @@
     <string name="todo">TODO</string>
     <string name="profile_picture">Profile Picture</string>
 
-   
+
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="privacy_level">
         <item>Friends</item>

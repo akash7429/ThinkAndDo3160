@@ -132,6 +132,7 @@
         android:background="@drawable/custom_button"
         android:padding="15dp"
         android:text="Login"
+
         android:textColor="#fff"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
